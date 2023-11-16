@@ -12,13 +12,15 @@ struct ToggleButtonArea: View {
     let name:String
     let rules:String
     let description:String
-    
+    let imageBackground:Color
     //body
     var body: some View {
         VStack {
             HStack {
                 ZStack {
-                    RoundedRectangle
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(imageBackground)
+                        .frame(width: 30,height: 30)
                     Image(systemName: image)
                         .foregroundColor(.white)
                 }
@@ -27,6 +29,11 @@ struct ToggleButtonArea: View {
                     Text (rules)
                 }
             Spacer()
+                VStack {
+                    Toggle("adblocker", isOn: Binding.constant(true))
+                        .labelsHidden()
+                    
+                }
             }
         }
         Text(description)
@@ -34,5 +41,5 @@ struct ToggleButtonArea: View {
 }
 
 #Preview {
-    ToggleButtonArea(image: "megaphone.fill", name: "Block Ads on sites", rules: "55096 rules", description: "remove bothersome banners and other obtrusive ads on sites")
+    ToggleButtonArea(image: "megaphone.fill", name: "Block Ads on sites", rules: "55096 rules", description: "remove bothersome banners and other obtrusive ads on sites", imageBackground:.yellow)
 }
