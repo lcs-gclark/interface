@@ -9,7 +9,7 @@ import SwiftUI
 let mediumGray = Color(
     hue: 0/360.0,
     saturation: 0.0,
-    brightness: 0.8
+    brightness: 0.6
 )
 struct ToggleButtonArea: View {
     let image:String
@@ -19,10 +19,9 @@ struct ToggleButtonArea: View {
     let imageBackground:Color
     //body
     var body: some View {
-        ZStack {
-            //first layer background
-            Color.black
-                .ignoresSafeArea()
+        
+        HStack{
+            
             VStack {
                 HStack {
                     ZStack {
@@ -33,29 +32,40 @@ struct ToggleButtonArea: View {
                             .foregroundColor(.white)
                     }
                     VStack {
-                        Text(name)
-                            .font(.title)
-                            .bold()
-                            .foregroundStyle(.white)
-                        Text (rules)
-                            .foregroundStyle(mediumGray)
+                        HStack {
+                            Text(name)
+                                .font(.title2)
+                                .bold()
+                                .foregroundStyle(.white)
+                            Spacer()
+                        }
+                        HStack {
+                            Text (rules)
+                                .foregroundStyle(mediumGray)
+                            Spacer()
+                        }
                     }
                     Spacer()
-                    VStack {
-                        Toggle("adblocker", isOn: Binding.constant(true))
-                            .labelsHidden()
-                        
-                    }
+                    Toggle("adblocker", isOn: Binding.constant(true))
+                        .labelsHidden()
                 }
                 
                 Text(description)
                     .foregroundStyle(mediumGray)
             }
+            
+            Image(systemName: "chevron.right")
+                .foregroundStyle(mediumGray)
+            
         }
+        
+        
     }
-    
 }
 
+
+
 #Preview {
-    ToggleButtonArea(image: "megaphone.fill", name: "Block Ads on Sites", rules: "55096 rules", description: "remove bothersome banners and other obtrusive ads on sites", imageBackground:.yellow)
+    ToggleButtonArea(image: "megaphone.fill", name: "Block Ads on Sites", rules: "55096 rules", description: "remove bothersome banners and other types of obtrusive ads on sites", imageBackground:.yellow)
 }
+
